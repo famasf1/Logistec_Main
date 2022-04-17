@@ -1,0 +1,48 @@
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+
+<WelcomeScreen>:
+    FloatLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Welcome'
+            font_size: '62sp'
+            pos_hint: {'center_x' : 0.2, 'y' : 0.4}
+            size: self.texture_size
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: ''
+
+    GridLayout:
+        cols: 3
+        pos: 0,-555
+        Button:
+            text: '1'
+            size_hint_y: None
+            height: dp(40)
+        Button:
+            text: '2'
+            size_hint_y: None
+            height: dp(40)
+            on_release: root.to_scanning()
+        Button:
+            text: '3'
+            size_hint_y: None
+            height: dp(40)
+
+<ScanningScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        ZBarCam:
+            id : zbarcam
+        Label:
+            size_hint: None, None
+            size: self.texture_size[0], 45
+            text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
+
+<RootWidget>:
+    WelcomeScreen:
+        name: 'welcome_screen'
+    ScanningScreen:
+        name: 'scanning_screen'
