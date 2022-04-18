@@ -23,7 +23,7 @@ class MainApp(App):
     def build(self):
         sm = RootWidget()
         sm.add_widget(WelcomeScreen())
-        sm.add_widget(ScanningScreen())   
+        sm.add_widget(ScanningScreen()) 
         return sm
 
 if __name__ in "__main__":
