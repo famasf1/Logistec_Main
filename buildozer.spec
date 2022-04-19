@@ -45,7 +45,8 @@ requirements =     android,
     Pillow,
     python3,
     pyzbar,
-    xcamera
+    xcamera,
+    sqlite3
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
