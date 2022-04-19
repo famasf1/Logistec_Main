@@ -13,17 +13,12 @@ from scannerapp import ScanningScreen
 ##DOLATER : login page
 ##DOLATER : specific page for user login
 
-
-Builder.load_file('design.kv')
-
 class RootWidget(ScreenManager):
-    pass
+    Builder.load_file('design.kv')
 
 class MainApp(App):
     def build(self):
         sm = RootWidget()
-        sm.add_widget(WelcomeScreen())
-        sm.add_widget(ScanningScreen()) 
         return sm
 
 if __name__ in "__main__":
