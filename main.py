@@ -1,4 +1,3 @@
-from msilib.schema import Error
 from kivy.uix.screenmanager import ScreenManager
 from kivy.app import App
 from kivy.lang import Builder
@@ -6,7 +5,8 @@ from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
 
 import sqlite3
-from sqlite3 import Error
+import sys
+import traceback
 
 ##TODO : add sound every time scanning is success
 ##TODO : record value from scanning into database
@@ -25,16 +25,20 @@ class MainApp(App):
         try:
             con = sqlite3.connect('./data/database.db')
             return con
-        except Error:
-            print(Error)
+        except sqlite3.Error as er:
+            print('SQLite error: %s' % (' '.join(er.args)))
+            print("Exception class is: ", er.__class__)
+            print('SQLite traceback: ')
+            exc_type, exc_value, exc_tb = sys.exc_info()
+            print(traceback.format_exception(exc_type, exc_value, exc_tb))
     
     def readTable(self, con):
         cursorObj = con.cursor()
         try:
             cursorObj.execute("CREATE TABLE IF NOT EXIST scanning_data(ID integer PRIMARY KEY, PHYID text, PHYNUMBER integer, BRANCH NUMBER integer, BRANCH NAME integer)")
+            con.commit()
         except sqlite3.OperationalError:
             print('Already did.')
-        con.commit()
 
     def build(self):
         con = self.connectAppDatabase()
