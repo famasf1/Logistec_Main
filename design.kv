@@ -35,11 +35,8 @@
         orientation: 'vertical'
         ZBarCam:
             id: zbarcam
-            # optional, by default checks all types
-            code_types: 'QRCODE', 'EAN13'
             Button:
-                pos_hint: {'top' : 1, 'center_x' : 0.5}
-                halign: 'center'
+                pos_hint: {'right' : 1, 'x' : -2}
                 text: 'Back'
                 size_hint: None, None
                 on_release: root.to_mainpage()
@@ -48,7 +45,11 @@
             size_hint: None, None
             size: self.texture_size[0], 50
             text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
-
+            Button:
+                text: 'Send'
+                on_press: root.readScan()
+                pos_hint: {'right' : 1}
+                size_hint: None, None
 <RootWidget>:
     WelcomeScreen:
         name: 'welcome_screen'
