@@ -4,12 +4,13 @@ from kivy.lang import Builder
 from kivy.uix.progressbar import ProgressBar
 from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
+from testpage import OutputScreen
 
 import sqlite3
 import sys
 import traceback
 
-##TODO : add sound every time scanning is success
+##TODO : reduce scanning speed
 ##TODO : record value from scanning into database
 ##TODO : making signature screen after receiving shipment
 ##TODO : making signature screen before sending shipment
