@@ -4,7 +4,6 @@ from kivy.lang import Builder
 from kivy.uix.progressbar import ProgressBar
 from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
-from testpage import OutputScreen
 
 import sqlite3
 import sys

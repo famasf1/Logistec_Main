@@ -14,5 +14,7 @@ class ScanningScreen(Screen):
     def readScan(self):
         foundBarcode = str(self.ids['reading_scan'].text).translate({ord(i): None for i in f"b'A00"})
         if foundBarcode:
-            self.manager.current = 'output_screen'
-            beep.play()
+            print(foundBarcode)
+
+################ this section is for the barcode scanner algorithm
+
