@@ -35,15 +35,12 @@ class MainApp(App):
             print('SQLite traceback: ')
             exc_type, exc_value, exc_tb = sys.exc_info()
             print(traceback.format_exception(exc_type, exc_value, exc_tb))
-    
-    def readTable(self, con):
-        cursorObj = con.cursor()
-        cursorObj.execute(f"CREATE TABLE IF NOT EXIST scanning_data(ID integer PRIMARY KEY, PHYID text, PHYNUMBER integer, BRANCH NUMBER integer, BRANCH NAME integer)")
-        con.commit()
         
     def build(self):
         con = self.connectAppDatabase()
-        self.readTable(con)
+        cursorObj = con.cursor()
+        cursorObj.execute("CREATE TABLE IF NOT EXISTS scanning_data (ID INTEGER PRIMARY KEY, PHY_ID TEXT, PHY_NUMBER INTEGER, BRANCH_NUMBER INTEGER, BRANCH_NAME INTEGER)")
+        con.commit()
         sm = RootWidget()
         return sm
 
