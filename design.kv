@@ -37,6 +37,7 @@
                 Button:
                     text: 'Back'
                     size_hint: None, None
+                    on_press: root.ids.zbarcam.ids.xcamera.play=False
                     on_release: root.to_mainpage()
         Label:
             id: reading_scan
@@ -45,6 +46,7 @@
             text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
             on_text: root.readScan()
 
+<<<<<<< HEAD
 <OutputScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -60,14 +62,19 @@
             text: 'ลายเซ็นผู้ส่ง'
             size: self.texture_size[0], 50
 
+=======
+>>>>>>> 2f5ddb0ec0119b130099fa36590921cb47640e70
 
 <RootWidget>:
     WelcomeScreen:
         name: 'welcome_screen'
     ScanningScreen:
         name: 'scanning_screen'
+<<<<<<< HEAD
     OutputScreen:
         name: 'output_screen'
     SigningScreen:
         name: 'signing_screen'
+=======
+>>>>>>> 2f5ddb0ec0119b130099fa36590921cb47640e70
     
