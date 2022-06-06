@@ -1,10 +1,10 @@
 from kivy.uix.screenmanager import ScreenManager
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.uix.progressbar import ProgressBar
 from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
 from testpage import OutputScreen
+
 
 import sqlite3
 import sys
@@ -19,16 +19,14 @@ import traceback
 ##DOLATER : login page
 ##DOLATER : specific page for user login
 
-pb = ProgressBar(max=10000)
 
 class RootWidget(ScreenManager):
     Builder.load_file('design.kv')
 
-class MainApp(App):
+class MainApp(MDApp):
     def connectAppDatabase(self):
-        pb.value = 750
         try:
-            con = sqlite3.connect('./data/database.db')
+            con = sqlite3.connect('data/database.db')
             return con
         except sqlite3.Error as er:
             print('SQLite error: %s' % (' '.join(er.args)))
