@@ -1,8 +1,10 @@
 from kivy.uix.screenmanager import ScreenManager
-from kivymd.app import MDApp
+from kivy.app import App
 from kivy.lang import Builder
 from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
+from testpage import OutputScreen
+from signaturepage import SignatureScreen
 
 
 import sqlite3
@@ -22,14 +24,10 @@ import traceback
 class RootWidget(ScreenManager):
     Builder.load_file('design.kv')
 
-class MainApp(MDApp):
+class MainApp(App):
     def connectAppDatabase(self):
         try:
-<<<<<<< HEAD
             con = sqlite3.connect('data/database.db')
-=======
-            con = sqlite3.connect('data\database.db')
->>>>>>> 2f5ddb0ec0119b130099fa36590921cb47640e70
             return con
         except sqlite3.Error as er:
             print('SQLite error: %s' % (' '.join(er.args)))
@@ -41,7 +39,7 @@ class MainApp(MDApp):
     def build(self):
         con = self.connectAppDatabase()
         cursorObj = con.cursor()
-        cursorObj.execute("CREATE TABLE IF NOT EXISTS scanning_data (ID INTEGER PRIMARY KEY, PHY_ID TEXT, PHY_NUMBER INTEGER, BRANCH_NUMBER INTEGER, BRANCH_NAME INTEGER)")
+        cursorObj.execute('''CREATE TABLE IF NOT EXISTS scanning_data (ID INTEGER PRIMARY KEY, PHY_ID TEXT, PHY_NUMBER INTEGER, BRANCH_NUMBER INTEGER, BRANCH_NAME INTEGER, UNIQUE(PHY_ID))''')
         con.commit()
         sm = RootWidget()
         return sm
