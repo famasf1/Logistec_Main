@@ -26,4 +26,7 @@ class ScanningScreen(Screen):
             #MainApp.build.cursorObj.commit()
             #self.manager.current = 'signature_screen'
 
+    def to_signature(self):
+        self.manager.current = 'signature_screen'
+        beep.unload()
 

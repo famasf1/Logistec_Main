@@ -38,6 +38,13 @@
                     size_hint: None, None
                     on_press: root.ids.zbarcam.ids.xcamera.play=False
                     on_release: root.to_mainpage()
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                Button:
+                    text: 'Finish'
+                    size_hint: None, None
+                    on_release: root.to_signature()
         Label:
             id: reading_scan
             size_hint: None, None
@@ -45,34 +52,28 @@
             text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
             on_text: root.readScan()
 
-<OutputScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            size_hint: None, None
-            size: self.texture_size[0], 50
-            text: root.showString()
-
 <SignatureScreen>:
     BoxLayout:
         orientation: 'vertical'
         Label:
             text: 'ลายเซ็นผู้ส่ง'
             size: self.texture_size[0], 50
-        Widget:
-            canvas:
-                Ellipse:
-                    pos: (root.touch.x - d / 2, root.touch.y - d / 2)
-                    size: (root.draw_size, root.draw_size)
-                    color: (1,1,0)            
-
+            pos_hint: {'left' : 1}
+    Widget:
+        canvas:
+            Ellipse:
+                def on_touch_down(self, touch):
+                    with self.canvas:
+                        Color(1, 1, 0)
+                        d = 30.
+                        Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
+                        touch.ud['line'] = Line(points=(touch.x, touch.y))
+                
 <RootWidget>:
     WelcomeScreen:
         name: 'welcome_screen'
     ScanningScreen:
         name: 'scanning_screen'
-    OutputScreen:
-        name: 'showString'
     SignatureScreen:
         name: 'signature_screen'
     
