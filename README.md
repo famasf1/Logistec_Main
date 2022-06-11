@@ -3,9 +3,9 @@ My Logistic app project. Meant to be for company-internal use and my own portfol
 
 TO-DO List
 
-##TODO : add sound every time scanning is success
+##TODO : add sound every time scanning is success - DONE!
 
-##TODO : record value from scanning into database
+##TODO : record value from scanning into database - IMPLEMENTING...
 
 ##TODO : making signature screen after receiving shipment
 
