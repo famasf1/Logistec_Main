@@ -2,9 +2,9 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.widget import Widget
 from kivy.app import App
 from kivy.lang import Builder
-from welcome import WelcomeScreen
-from scannerapp import ScanningScreen
-from signaturepage import SignatureScreen
+from Pages.welcome import WelcomeScreen
+from Pages.scannerapp import ScanningScreen
+from Pages.signaturepage import SignatureScreen
 from kivy.core.window import Window
 import sqlite3
 import sys
