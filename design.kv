@@ -57,18 +57,17 @@
         orientation: 'vertical'
         Label:
             text: 'ลายเซ็นผู้ส่ง'
+            font_name: 'Asset/angsana.ttc'
             size: self.texture_size[0], 50
             pos_hint: {'left' : 1}
-    Widget:
-        canvas:
-            Ellipse:
-                def on_touch_down(self, touch):
-                    with self.canvas:
-                        Color(1, 1, 0)
-                        d = 30.
-                        Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
-                        touch.ud['line'] = Line(points=(touch.x, touch.y))
-                
+        Widget:
+            canvas:
+                Ellipse:
+                    on_touch_down:
+                        size: (30., 30.)
+                        pos: (touch.x - 30. / 2, touch.y - 30. / 2)
+
+    
 <RootWidget>:
     WelcomeScreen:
         name: 'welcome_screen'
@@ -76,4 +75,3 @@
         name: 'scanning_screen'
     SignatureScreen:
         name: 'signature_screen'
-    

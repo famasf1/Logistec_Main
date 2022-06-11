@@ -1,2 +1,5 @@
 .buildozer/
 branch_data_dump.py
+TEST/
+spec/
+__pycache__/

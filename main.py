@@ -1,12 +1,11 @@
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.widget import Widget
 from kivy.app import App
 from kivy.lang import Builder
 from welcome import WelcomeScreen
 from scannerapp import ScanningScreen
 from signaturepage import SignatureScreen
 from kivy.core.window import Window
-
-
 import sqlite3
 import sys
 import traceback
@@ -24,7 +23,7 @@ import traceback
 class RootWidget(ScreenManager):
     Builder.load_file('design.kv')
 
-class MainApp(App):
+class LogistecApp(App):
     def connectAppDatabase(self):
         try:
             con = sqlite3.connect('data\database.db')
@@ -42,7 +41,7 @@ class MainApp(App):
         cursorObj.execute("CREATE TABLE IF NOT EXISTS scanning_data (ID INTEGER PRIMARY KEY, PHY_ID TEXT, PHY_NUMBER INTEGER, BRANCH_NUMBER INTEGER, BRANCH_NAME INTEGER)")
         con.commit()
         sm = RootWidget()
-        return sm, 
+        return sm
 
 if __name__ in "__main__":
-    MainApp().run()
+    LogistecApp().run()
