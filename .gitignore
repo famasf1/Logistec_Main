@@ -3,3 +3,6 @@ branch_data_dump.py
 TEST/
 spec/
 __pycache__/
+Scripts/
+build/
+dist/
