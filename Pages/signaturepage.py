@@ -1,11 +1,11 @@
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Ellipse, Line
 
-class SignatureScreen(Screen):
+class SignatureScreen(MDScreen):
     pass
 
-class MyPaintWidget(Widget):
+class SignatureBox(Widget):
     def on_touch_down(self, touch):
         with self.canvas:
             Color(1, 0, 0)

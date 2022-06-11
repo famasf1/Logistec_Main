@@ -1,6 +1,6 @@
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
 
-class OutputScreen(Screen):
+class OutputScreen(MDScreen):
     def showString(self):
         foundBarcode = str(self.ids['reading_scan'].text).translate({ord(i): None for i in f"b'A00"})
         if foundBarcode:

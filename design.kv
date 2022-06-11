@@ -1,12 +1,10 @@
 <WelcomeScreen>:
-    Label:
-        text: "welcome"
-        halign: "center"
-    BoxLayout:
-        orientation: 'vertical'
+    GridLayout:
+        cols: 1
+        Label:
+            text: "welcome"
         Label:
             text: ''
-
     GridLayout:
         cols: 3
         pos: 0,-555
@@ -53,18 +51,21 @@
             on_text: root.readScan()
 
 <SignatureScreen>:
-#:import MyPaintWidget Pages.signaturepage.MyPaintWidget
-    AnchorLayout:
-        anchor_x: 'left'
-        anchor_y: 'top'
-        Label:
-            text: 'ลายเซ็นผู้ส่ง'
-            font_name: 'Asset/angsana.ttc'
-            size: self.texture_size[0], 50
-            pos_hint: {'left' : 1}
+#:import SignatureBox Pages.signaturepage.SignatureBox
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            padding: 15,15
+            Label:
+                text: 'ลายเซ็นผู้ส่ง'
+                font_name: 'Asset/angsana.ttc'
+                size: self.texture_size[0], 50
+                pos_hint: {'left' : 1}
     BoxLayout:
-        MyPaintWidget:
-            orientation: 'vertical'
+        orientation: 'vertical'
+        SignatureBox:
+            id: signature_box
 
     
 <RootWidget>:

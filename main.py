@@ -1,14 +1,23 @@
-from kivy.uix.screenmanager import ScreenManager
-from kivy.uix.widget import Widget
-from kivy.app import App
-from kivy.lang import Builder
-from Pages.welcome import WelcomeScreen
-from Pages.scannerapp import ScanningScreen
-from Pages.signaturepage import SignatureScreen
-from kivy.core.window import Window
+#<stdio>
 import sqlite3
 import sys
 import traceback
+
+### Kivy
+from kivy.core.window import Window
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.widget import Widget
+from kivymd.app import MDApp
+
+### Import page to work with ScreenManager.
+# Factory class will automatically go to each page and grab Screen class.
+# From individual files.
+# This is for future scaling and readability purpose. Though i don't know if this
+# is even remotely Pythonic.
+from Pages.scannerapp import ScanningScreen
+from Pages.signaturepage import SignatureScreen
+from Pages.welcome import WelcomeScreen
 
 ##TODO : reduce scanning speed
 ##TODO : record value from scanning into database
@@ -19,11 +28,10 @@ import traceback
 ##DOLATER : login page
 ##DOLATER : specific page for user login
 
-
 class RootWidget(ScreenManager):
     Builder.load_file('design.kv')
 
-class LogistecApp(App):
+class LogistecApp(MDApp):
     def connectAppDatabase(self):
         try:
             con = sqlite3.connect('data\database.db')
@@ -35,6 +43,11 @@ class LogistecApp(App):
             exc_type, exc_value, exc_tb = sys.exc_info()
             print(traceback.format_exception(exc_type, exc_value, exc_tb))
         
+    ### FPS MONITORING FOR DEBUGGING AND PERFORMANCE TESTING PURPOSE ###
+    # PLEASE DELETE IT BEFORE COMPLILING #
+    def on_start(self):
+        self.fps_monitor_start()
+
     def build(self):
         con = self.connectAppDatabase()
         cursorObj = con.cursor()
