@@ -60,9 +60,5 @@ class LogistecApp(MDApp):
         self.theme_cls.material_style = "M3"
         return sm
 
-    def update_kv_files(self,text):
-        with open(self.path_to_kv, "rw") as kv_files:
-            kv_files.write(text)
-
 if __name__ in "__main__":
     LogistecApp().run()
