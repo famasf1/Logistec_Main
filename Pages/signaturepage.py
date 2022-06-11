@@ -2,6 +2,8 @@ from kivymd.uix.screen import MDScreen
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Ellipse, Line
 
+###TODO : Contain the SignatureBox Widget inside a box. Preventing it
+# From overlapping other stuff.
 
 class SignatureScreen(MDScreen):
     def to_scanning_page(self): #GO BACK TO SCANNING
