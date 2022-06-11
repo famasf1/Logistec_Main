@@ -9,6 +9,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.widget import Widget
 from kivymd.app import MDApp
+from matplotlib import style
 
 ### Import page to work with ScreenManager.
 # Factory class will automatically go to each page and grab Screen class.
@@ -32,6 +33,7 @@ class RootWidget(ScreenManager):
     Builder.load_file('design.kv')
 
 class LogistecApp(MDApp):
+    path_to_kv = 'design.kv'
     def connectAppDatabase(self):
         try:
             con = sqlite3.connect('data\database.db')
@@ -54,7 +56,13 @@ class LogistecApp(MDApp):
         cursorObj.execute("CREATE TABLE IF NOT EXISTS scanning_data (ID INTEGER PRIMARY KEY, PHY_ID TEXT, PHY_NUMBER INTEGER, BRANCH_NUMBER INTEGER, BRANCH_NAME INTEGER)")
         con.commit()
         sm = RootWidget()
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.material_style = "M3"
         return sm
+
+    def update_kv_files(self,text):
+        with open(self.path_to_kv, "rw") as kv_files:
+            kv_files.write(text)
 
 if __name__ in "__main__":
     LogistecApp().run()

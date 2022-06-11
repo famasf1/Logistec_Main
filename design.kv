@@ -24,25 +24,31 @@
 
 <ScanningScreen>:
 #:import ZBarCam kivy_garden.zbarcam.ZBarCam
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
-        ZBarCam:
-            id: zbarcam
-            AnchorLayout:
-                anchor_x: 'left'
-                anchor_y: 'top'
-                Button:
-                    text: 'Back'
-                    size_hint: None, None
-                    on_press: root.ids.zbarcam.ids.xcamera.play=False
-                    on_release: root.to_mainpage()
-            AnchorLayout:
-                anchor_x: 'right'
-                anchor_y: 'bottom'
-                Button:
-                    text: 'Finish'
-                    size_hint: None, None
-                    on_release: root.to_signature()
+        padding: '12dp'
+        MDBoxLayout:
+            ZBarCam:
+                id: zbarcam
+                AnchorLayout:
+                    anchor_x: 'left'
+                    anchor_y: 'top'
+                    MDIconButton:
+                        icon: 'arrow-left'
+                        md_bg_color: 0,0,0,2
+                        x: '12dp'
+                        pos_hint: {'top' : .98}
+                        on_press: root.ids.zbarcam.ids.xcamera.play=False
+                        on_release: root.to_mainpage()
+                AnchorLayout:
+                    anchor_x: 'right'
+                    anchor_y: 'bottom'
+                    MDIconButton:
+                        icon: 'send-check-outline'
+                        md_bg_color: 0,0,0,2
+                        x: '14dp'
+                        pos_hint: {'bottom' : .98}
+                        on_release: root.to_signature()
         Label:
             id: reading_scan
             size_hint: None, None
@@ -52,20 +58,41 @@
 
 <SignatureScreen>:
 #:import SignatureBox Pages.signaturepage.SignatureBox
-    GridLayout:
-        cols:1
-        GridLayout:
-            cols:1
-            padding: 15,15
-            Label:
-                text: 'ลายเซ็นผู้ส่ง'
-                font_name: 'Asset/angsana.ttc'
-                size: self.texture_size[0], 50
-                pos_hint: {'left' : 1}
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 15,15
+        Label:
+            text: 'ลายเซ็นผู้ส่ง'
+            font_name: 'Asset/angsana.ttc'
+            font_size: '32sp'
+            pos_hint: {'center_y' : .98}
+            MDBoxLayout:
+                SignatureBox:
+                    id: signature_box
+                    orientation: 'vertical'
+                    adaptive_size: True
+                    spacing: '12dp'
+    AnchorLayout:
+        padding: 15,15
+        anchor_x: 'left'
+        anchor_y: 'top'
+        MDIconButton:
+            icon: 'arrow-left'
+            md_bg_color: 0,0,0,2
+            x: '12dp'
+            pos_hint: {'top' : .98}
+            on_press: root.clear_canvas(root.ids.signature_box)
+            on_release: root.to_scanning_page()
     BoxLayout:
         orientation: 'vertical'
-        SignatureBox:
-            id: signature_box
+        padding: 15,15
+        MDIconButton:
+            icon: 'cancel'
+            md_bg_color: 0,0,0,2
+            x: '16dp'
+            pos_hint: {'bottom' : .98}
+            on_press: root.clear_canvas(root.ids.signature_box)
+
 
     
 <RootWidget>:
