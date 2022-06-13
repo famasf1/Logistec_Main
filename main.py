@@ -4,12 +4,10 @@ import sys
 import traceback
 
 ### Kivy
-from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.widget import Widget
 from kivymd.app import MDApp
-from matplotlib import style
 
 ### Import page to work with ScreenManager.
 # Factory class will automatically go to each page and grab Screen class.

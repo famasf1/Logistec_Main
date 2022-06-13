@@ -1,4 +1,5 @@
 from kivymd.uix.screen import MDScreen
+from kivy_garden.zbarcam.zbarcam import ZBarCam
 
 class WelcomeScreen(MDScreen):
     def to_scanning(self):

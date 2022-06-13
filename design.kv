@@ -38,7 +38,6 @@
                         md_bg_color: 0,0,0,2
                         x: '12dp'
                         pos_hint: {'top' : .98}
-                        on_press: root.ids.zbarcam.ids.xcamera.play=False
                         on_release: root.to_mainpage()
                 AnchorLayout:
                     anchor_x: 'right'
@@ -77,6 +76,7 @@
         anchor_x: 'left'
         anchor_y: 'top'
         MDIconButton:
+            id: back_to_scan
             icon: 'arrow-left'
             md_bg_color: 0,0,0,2
             x: '12dp'

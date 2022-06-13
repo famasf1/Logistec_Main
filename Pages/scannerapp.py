@@ -30,3 +30,5 @@ class ScanningScreen(MDScreen):
         self.manager.current = 'signature_screen'
         beep.unload()
 
+
+
